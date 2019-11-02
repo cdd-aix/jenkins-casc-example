@@ -1,8 +1,8 @@
-up: build
-	docker-compose up --detach
-
 up-logs: up
-	docker-compose logs --follow
+	docker-compose logs --follow --no-color --timestamps --tail=all < /dev/null
+
+up: build
+	docker-compose up --detach < /dev/null
 
 build: docker-compose.yaml
-	docker-compose build
+	docker-compose build < /dev/null
