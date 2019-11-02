@@ -2,7 +2,7 @@
 
 Demonstrate Jenkins Config as Code for
 * [ ] Configuring modules
-* [ ] Configuring users
+* [x] Configuring users
 * [ ] Configuring auth strategy
 * [ ] Creating service account for Docker Swarm
 
