@@ -7,3 +7,6 @@ jenkins:
         - id: 'admin'
           password: 'admin'
   authorizationStrategy: loggedInUsersCanDoAnything
+unclassified:
+  location:
+    url: ${JENKINS_LOCATION_URL:-http://localhost:8080/}
