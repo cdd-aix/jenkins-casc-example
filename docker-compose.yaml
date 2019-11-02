@@ -11,9 +11,9 @@ services:
       - 50000:50000
     volumes:
       - jenkins-home:/var/jenkins_home
-  swarm:
+  jenkins-swarm-agent:
     build:
-      context: swarm-from-docker
+      context: jenkins-swarm-agent
     depends_on:
       - jenkins
     environment:
