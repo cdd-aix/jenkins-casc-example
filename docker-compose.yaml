@@ -1,0 +1,8 @@
+---
+version: '3'
+services:
+  jenkins:
+    build:
+      context: jenkins
+    ports:
+      - 8081:8080
