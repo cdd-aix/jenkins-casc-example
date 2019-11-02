@@ -8,3 +8,8 @@ services:
       - 8080:8080
     environment:
       JENKINS_LOCATION_URL: ${JENKINS_LOCATION_URL:-http://localhost:8080/}
+  swarm:
+    build:
+      context: swarm-from-docker
+    environment:
+      MASTER: ${JENKINS_LOCATION_URL:-http://localhost:8080}
