@@ -2,5 +2,8 @@
 FROM jenkins/jenkins:lts-alpine
 ENV CASC_JENKINS_CONFIG ${JENKINS_HOME}/jenkins.yaml
 # Best practice is a specific plugin version
-RUN /usr/local/bin/install-plugins.sh configuration-as-code
+RUN /usr/local/bin/install-plugins.sh \
+	configuration-as-code\
+	script-security\
+	swarm
 COPY jenkins.yaml ${JENKINS_HOME}/
