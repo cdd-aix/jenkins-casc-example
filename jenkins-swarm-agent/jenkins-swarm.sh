@@ -6,7 +6,7 @@ else
     CMD=(
 	java
 	${JAVA_OPTS:+$JAVA_OPTS}
-	-jar /swarm-client-$JENKINS_SWARM_VERSION.jar
+	-jar /swarm-client.jar
 	${MASTER:+-master "$MASTER"}
 	${LABELS:+-labels "$LABELS"}
 	${USERNAME:+-username "$USERNAME"}
