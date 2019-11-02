@@ -1,0 +1,24 @@
+---
+version: '3'
+services:
+  jenkins:
+    build:
+      context: jenkins
+    environment:
+      JENKINS_LOCATION_URL: ${JENKINS_LOCATION_URL:-http://localhost:8080/}
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins-home:/var/jenkins_home
+  swarm:
+    build:
+      context: swarm-from-docker
+    depends_on:
+      - jenkins
+    environment:
+      MASTER: ${JENKINS_LOCATION_URL:-http://localhost:8080}
+      USERNAME: admin
+      PASSWORD: admin
+volumes:
+  jenkins-home:

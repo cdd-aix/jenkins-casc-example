@@ -1,8 +1,9 @@
 # Jenkins Config as Code Example
 
 Demonstrate Jenkins Config as Code for
-* [ ] Configuring modules
-* [ ] Configuring users
+* [x] Configuring modules
+* [x] Configuring users
+* [ ] Jenkins swarm agent via Docker
 * [ ] Configuring auth strategy
 * [ ] Creating service account for Docker Swarm
 
