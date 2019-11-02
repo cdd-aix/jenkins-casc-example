@@ -9,6 +9,8 @@ else
 	-jar /swarm-client-$JENKINS_SWARM_VERSION.jar
 	${MASTER:+-master "$MASTER"}
 	${LABELS:+-labels "$LABELS"}
+	${USERNAME:+-username "$USERNAME"}
+	${PASSWORD:+-passwordEnvVariable PASSWORD}
     )
 fi
 CMD+=("$@")

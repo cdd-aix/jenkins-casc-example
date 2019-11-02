@@ -6,6 +6,7 @@ services:
       context: jenkins
     ports:
       - 8080:8080
+      - 50000:50000
     environment:
       JENKINS_LOCATION_URL: ${JENKINS_LOCATION_URL:-http://localhost:8080/}
   swarm:
@@ -13,3 +14,5 @@ services:
       context: swarm-from-docker
     environment:
       MASTER: ${JENKINS_LOCATION_URL:-http://localhost:8080}
+      USERNAME: admin
+      PASSWORD: admin
