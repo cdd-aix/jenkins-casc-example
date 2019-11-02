@@ -5,6 +5,8 @@ jenkins:
     standard:
       # may break behind proxy
       excludeClientIPFromCrumb: false
+  remotingSecurity:
+    enabled: true
   securityRealm:
     local:
       allowsSignup: false
