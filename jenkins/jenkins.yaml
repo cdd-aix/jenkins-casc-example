@@ -1,9 +1,18 @@
 ---
 jenkins:
+  authorizationStrategy: loggedInUsersCanDoAnything
+  crumbIssuer:
+    standard:
+      # may break behind proxy
+      excludeClientIPFromCrumb: false
+  remotingSecurity:
+    enabled: true
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: 'admin'
           password: 'admin'
-  authorizationStrategy: loggedInUsersCanDoAnything
+unclassified:
+  location:
+    url: ${JENKINS_LOCATION_URL:-http://localhost:8080/}
