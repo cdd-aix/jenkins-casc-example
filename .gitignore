@@ -1,2 +1,5 @@
 .env
 *.jar
+\?/
+swarm-client*
+native-image.id

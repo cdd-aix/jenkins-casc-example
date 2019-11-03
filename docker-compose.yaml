@@ -20,5 +20,14 @@ services:
       MASTER: ${JENKINS_LOCATION_URL:-http://localhost:8080}
       USERNAME: admin
       PASSWORD: admin
+  jenkins-native-swarm-agent:
+    build:
+      context: jenkins-native-swarm-agent
+    depends_on:
+      - jenkins
+    environment:
+      MASTER: ${JENKINS_LOCATION_URL:-http://localhost:8080}
+      USERNAME: admin
+      PASSWORD: admin
 volumes:
   jenkins-home:

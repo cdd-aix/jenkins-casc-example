@@ -27,11 +27,23 @@ $(SWARM_FILE):
 jenkins-native-swarm-agent/$(NATIVE_SWARM_FILE): $(NATIVE_SWARM_FILE)
 	cp -p $^ $@
 
+NATIVE_OPTIONS = --no-fallback --no-server
+NATIVE_OPTIONS += -H:+AllowVMInspection
+NATIVE_OPTIONS += --initialize-at-run-time=sun.awt.dnd.SunDropTargetContextPeer\$$EventDispatcher
+NATIVE_OPTIONS += -H:IncludeResourceBundles=org.kohsuke.args4j.Messages
+NATIVE_OPTIONS += -H:Optimize=0
+NATIVE_OPTIONS += -H:+ReportUnsupportedElementsAtRuntime
+NATIVE_OPTIONS += -H:+JNIVerboseLookupErrors
+NATIVE_OPTIONS += -H:+RuntimeAssertions
+NATIVE_OPTIONS += -H:ClassInitialization=org.kohsuke.args4j.CmdLineParser:run_time,hudson.plugins.swarm.Client:run_time
+NATIVE_OPTIONS += --verbose
 $(NATIVE_SWARM_FILE): $(SWARM_FILE) $(NATIVE_ID)
-	$(NATIVE_IMAGE) --no-fallback --initialize-at-run-time=sun.awt.dnd.SunDropTargetContextPeer\$$EventDispatcher -H:IncludeResourceBundles=org.kohsuke.args4j.Messages -jar $(SWARM_FILE)
+	$(NATIVE_IMAGE)  $(NATIVE_OPTIONS) -jar $<
+	if ! ./$@ -help; then echo failed; rm -vf $<; exit 1; fi
 
 $(NATIVE_ID): native-image/Dockerfile
-	docker build -t localhost/graalvm-ce-native-image native-image/
+	docker image build -t localhost/graalvm-ce-native-image native-image/
+	docker image ls -q localhost/graalvm-ce-native-image > $@
 
 cleantest: | realclean up-logs
 
